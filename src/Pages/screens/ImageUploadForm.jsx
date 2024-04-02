@@ -79,11 +79,11 @@ const ImageUploadForm = () => {
 
   return (
     <div>
-      <button className='imagesaa' onClick={() => setIsModalOpen(true)}>Upload Image</button>
+      <button className='imagesaa' onClick={() => setIsModalOpen(true)}>Add Item</button>
   
       {isModalOpen && (
         <div className="upload-image-modal"> {/* Apply the class to the modal */}
-          <h2>Upload Image</h2>
+          <h2>Add Item</h2>
           <form onSubmit={handleSubmit}>
                           <select
                   name="category_id"
@@ -99,7 +99,7 @@ const ImageUploadForm = () => {
                     </option>
                    ))}
                 </select>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Image name" />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Item Name" />
             <input type="file" onChange={(e) => setImage(e.target.files[0])} />
             <button type="submit">Upload</button>
             <button type="button" onClick={() => setIsModalOpen(false)}>Close</button>

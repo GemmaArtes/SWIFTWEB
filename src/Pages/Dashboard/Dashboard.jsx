@@ -39,6 +39,7 @@ function Dashboard() {
                  <Route path="reports" element={<Reports />} />
                  <Route path="categories" element={<Categories />} />
                  <Route path="addcategories" element={<AddCategories />} />
+                 <Route path="ImageUploadForm" element={<ImageUploadForm/>} />
                  <Route path="item" element={<Item />} />
                  <Route path="profile" element={<Profile />} />
                  <Route path="reference" element={<ReferencePage />} />
@@ -47,7 +48,6 @@ function Dashboard() {
                  <Route path="inventory" element={<Inventory/>} />
                  <Route path="sales" element={<Sales/>} />
                  <Route path="Add_Account" element={<Register/>} />
-                 <Route path="ImageUploadForm" element={<ImageUploadForm/>} />
                 </Routes>
             
             </div>

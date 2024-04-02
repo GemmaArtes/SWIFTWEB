@@ -61,8 +61,13 @@ const handleLogout = (event) => {
       icon: <BiSolidCategory />,
     },
     {
-      path: '/dashboard/item',
+      path: '/dashboard/ImageUploadForm',
       name: 'Item',
+      icon: <FaClipboardList />,
+    },
+    {
+      path: '/dashboard/item',
+      name: 'Stocks',
       icon: <FaFolderOpen />,
     },
     {
@@ -80,11 +85,6 @@ const handleLogout = (event) => {
       name: 'Add account',
       icon: <IoPersonAddSharp />,
       
-    },
-    {
-      path: '/dashboard/ImageUploadForm',
-      name: 'Uploaded Image',
-      icon: <FaClipboardList />,
     },
     {
       path: '/dashboard/Listofuser',
