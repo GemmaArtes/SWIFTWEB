@@ -1,0 +1,64 @@
+.Register-form-group {
+    background-color: #656969;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    margin: 2% auto 0; /* Adjust top margin */
+    box-shadow: 0 0 10px rgba(247, 240, 240, 0.1);
+}
+
+.Registerngatxt {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color:white;
+}
+
+.form-field {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font:bold;
+}
+
+.password-input {
+    position: relative;
+}
+
+.register {
+    padding: 10px;
+    width: 50%;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+}
+
+.showpassword {
+    color: rgb(26, 27, 27);
+    border: none;
+    background: none;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.showpassword:hover {
+    background: none;
+}
+
+.fas {
+    color: skyblue;
+}
+
+.show {
+    color: white;
+    font-size: medium;
+    margin-left: 25px;
+    vertical-align: middle;
+    height: 8px; /* Adjust the height as needed */
+    margin-top: -18px;
+}
+

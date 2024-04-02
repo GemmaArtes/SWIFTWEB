@@ -1,0 +1,63 @@
+.saregisterlogoustp {
+  width: 80px; /* Adjust width as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.Register-form-group {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%; /* Adjust width as needed */
+  color: #f32626;
+  border-radius: 10px;
+  margin-bottom: 20px; /* Add margin at the bottom to separate from other content */
+}
+
+.Registerngatxt {
+  font-size: 24px; /* Adjust font size as needed */
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-field {
+  margin-bottom: 10px; /* Add margin at the bottom of each form field */
+}
+
+.showpassword {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: #fff; /* Adjust color as needed */
+}
+
+.register {
+  padding: 10px;
+  width: 100%; /* Adjust width as needed */
+  background-color: #4caf50; /* Adjust background color as needed */
+  color: #fff; /* Adjust text color as needed */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.password-do-not-match {
+  display: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.password-do-not-match.error {
+  color: red;
+  display: block;
+}
+
+.password-do-not-match.success {
+  color: green;
+  display: block;
+}

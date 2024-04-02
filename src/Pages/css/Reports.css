@@ -1,0 +1,86 @@
+/* Reports.css */
+
+
+/* Add this to your CSS file */
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
+
+.reports-container {
+    padding: 20px;
+}
+
+.reports-content {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.reports-title {
+    font-size: 25px;
+}
+
+.searchbarorder {
+    margin-bottom: 10px;
+}
+
+.reporttable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.reporttable th,
+.reporttable td {
+    border: 1px solid #0a0a0a;
+    padding: 12px;
+    text-align: left;
+}
+
+.reporttable th {
+    background-color: #f2f2f2;
+}
+
+.order-title {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown3 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dropdown2 {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.print-buttoninreports {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5%;
+    text-decoration: underline;
+}
+
+
+.searchshit[type="text"] {
+    height: 30px; 
+    padding: 5px;
+    font-size: 14px; 
+    background-color: rgb(249, 252, 252);
+    margin-left: 37%;
+    width: 20%;
+    margin-top: -4%;
+    margin-bottom: 5%;
+  }

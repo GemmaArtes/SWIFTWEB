@@ -1,0 +1,71 @@
+.sales-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-sales {
+    margin-bottom: 20px;
+}
+
+.Sales {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fffefe;
+}
+
+.Sales h2 {
+    color: #333;
+}
+
+.Sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.Sales-table th,
+.Sales-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.Sales-table th {
+    background-color: #b9bcbe;
+    color: rgb(7, 7, 7);
+}
+
+
+.Sales-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pagination {
+    margin-top:  15px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.pagination button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding:  2px;
+    width:  3%; /* Make sure this width is consistent with the active button */
+    margin:  2px;
+    cursor: pointer;
+    border-radius:  4px;
+    transition: background-color  0.3s ease; /* Optional: Add a smooth transition for the background color */
+}
+
+.pagination button.active {
+    background-color: #eb420f;
+    /* Remove the width property to match the regular button width */
+}
+
+.pagination button:hover {
+    background-color: #099ef5;
+}

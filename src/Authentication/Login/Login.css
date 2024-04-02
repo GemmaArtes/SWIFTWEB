@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-pinakauna {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../Images/ustp background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.maonianglogosaustp {
+  width: 100px; /* Adjust the width as needed */
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+  background: rgba(15, 15, 15, 0.7);
+  padding: 20px;
+  width: 300px; /* Adjust the width as needed */
+  color: #fcfcfc;
+  border-radius: 15px;
+  justify-content: center;
+  margin: 0 auto; /* Center the form container horizontally */
+}
+
+.loginngatxt {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.Waz-account {
+  margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #080808;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.login {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding: 8px;
+}

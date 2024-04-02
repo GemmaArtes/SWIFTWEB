@@ -1,0 +1,64 @@
+.imagesaa {
+    width:  11%;
+    border-radius:  5px;
+    font-size:  15px;
+    text-align: center; /* Center the text horizontally */
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+}
+
+
+.upload-image-modal {
+    position: fixed;
+    top:  50%;
+    left:  50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding:  20px;
+    border-radius:  10px;
+    z-index:  1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:  40%; /* Adjust the width of the modal */
+    max-width:  500px; /* Ensure the modal does not exceed  500px in width */
+  }
+  
+  .upload-image-modal h2 {
+    margin-bottom:  20px;
+  }
+  
+  .upload-image-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-image-modal input[type="text"],
+  .upload-image-modal input[type="file"] {
+    margin-bottom:  10px;
+  }
+  
+  .upload-image-modal button {
+    margin-top:  10px;
+  }
+  
+  .uploaded-image {
+    max-width:  50%; /* Adjust the width of the uploaded image */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: cover; /* Ensure the image covers the available space without distorting its aspect ratio */
+    border-radius:  10px; /* Optional: Adds rounded corners to the images */
+  }
+  
+  .image-container {
+    display: grid;
+    grid-template-columns: repeat(4,  1fr); 
+    gap:  10px; 
+  }
+  
+  .uploaded-image {
+    width:  100%;
+    height: auto;
+    object-fit: cover; 
+    border-radius:  10px; 
+  }
+  

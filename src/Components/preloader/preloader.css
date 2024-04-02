@@ -1,0 +1,106 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.8); /* Changed to white */
+    
+    
+    z-index: 9999;
+}
+
+.progress-bar {
+  
+    width: 100%;
+    max-width: 300px; /* Adjust as needed */
+    height: 20px;
+    background-color: #161515; /* Light grey */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.Logo{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+    justify-content: center;
+
+}
+.progress {
+    height: 100%;
+    background-color: #0a7a9c; /* Changed to white */
+    transition: width 0.2s ease-in-out; /* Smooth transition */
+}
+
+.preloader span {
+    margin-top: 20px;
+    font-size: 20px;
+    color: rgb(12, 12, 12); /* Changed to white */
+}
+
+
+@keyframes tireRotation {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+       
+        transform: rotate(0deg);
+    }
+}
+
+.tire {
+    animation: tireRotation 3s infinite linear;
+    transform-origin:center; /* Adjusted to the bottom of the circle */
+    transform-box: fill-box;
+}
+
+.wheel{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -30px;
+    gap: 92px;
+    margin-left: 110px;
+}   
+
+.tire{
+    width: 50px;
+    height: 50px;
+}
+
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.Cart {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.Swift-order {
+    opacity: 0; /* Initially invisible */
+    animation: fadeIn 3s ease-in-out forwards;
+    animation-delay: 0.5s; /* Adjust the delay as needed */
+}
+

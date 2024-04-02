@@ -1,0 +1,133 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+.cashorder-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-bottom: 10px;
+
+}
+  
+  .cashorder-content {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 150px;
+  }
+  
+  .cashorder-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .cashtable-container {
+    margin-top: 20px;
+  }
+  
+  .cashtable-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .cashsaorderrequestngabutton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    margin: 10px;
+    width: auto; 
+  }
+  
+  .cashsearchbar {
+    text-align: center;
+    margin-bottom: 20px;
+
+  }
+  
+  .cashsearchbarorder input[type="text"] {
+    padding: 8px;
+    width: 20%;
+    border: 1px solid #0a0a0a;
+    border-radius: 10px;
+    margin-left: 45%;
+    margin-bottom: 4%;
+  }
+  
+
+
+  .cashorder-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .cashorder-table th, .order-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .cashorder-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .cashorder-table td input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .cashcancelbuttonparasaorderpage,
+.cashupdatebuttonparasaorderpage {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  display: inline-block; 
+  width: auto;
+}
+  
+.cashremovebuttonsaorderpage {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+.cashdropdown-sortbuttonsaorder {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.cashdropdown-sortbuttonsaorder button {
+    font-size: 50px;
+}
+
+.cashcheckbox-header,
+.cashcheckbox-cell {
+  display: flex;
+  align-items: center;
+}
+
+.cashcheckbox-cell input {
+  margin-right: 5px;
+}

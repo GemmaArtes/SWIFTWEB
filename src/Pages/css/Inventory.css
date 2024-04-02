@@ -1,0 +1,107 @@
+.containersinventory {
+  margin: 20px;
+  position: relative; /* Add position relative to make absolute positioning work */
+}
+
+/* Search input styling */
+.searchinventory {
+  width: 50%;
+  font-size: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Add margin-bottom to create space between the search bar and the inventory */
+}
+
+/* Inventory container styling */
+.Inventory {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Inventory header styling */
+.Inventory h2 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+/* Inventory table styling */
+.Inventorytable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: small;
+}
+
+/* Table header styling */
+.Inventorytable th {
+  background-color: #d6d9db;
+  color: rgb(29, 28, 28);
+  padding: 12px;
+  font-size: 15px;
+  text-align: left;
+}
+
+/* Table cell styling */
+.Inventorytable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* Alternate row color for better readability */
+.Inventorytable tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect on table rows */
+.Inventorytable tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Pagination styling */
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+/* Styling for Previous and Next buttons */
+.paginationbutton {
+  background-color: #999c9e;
+  color: white;
+  border: none;
+  padding: 6px 10px; /* Adjusted padding for a more compact size */
+  margin: 0 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px; /* Adjusted font size */
+}
+
+/* Hover effect on buttons */
+/* .pagination button:hover {
+  background-color: #e29f23;
+}
+
+/* Active page button styling */
+/* .pagination button.active {
+  background-color: #1b84ec;
+} */ 
+
+/* Regular styling for numbering buttons */
+.numbering-button {
+  display: block; /* or inline-block, depending on your layout */
+}
+
+.red-text {
+  color: red;
+}
+
+/* Hide numbering buttons when screen width is below a certain threshold */
+@media screen and (max-width: 768px) {
+  .numbering-button {
+      display: none;
+  }
+}

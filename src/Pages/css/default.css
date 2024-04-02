@@ -1,0 +1,132 @@
+.container {
+    padding: 20px;
+}
+
+.content {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+.table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.saorderrequestngabutton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    margin: 10px;
+    width: auto;
+}
+
+.searchbarorder {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.searchbarorder input[type="text"] {
+    padding: 8px;
+    width: 20%;
+    border: 1px solid #0a0a0a;
+    border-radius: 10px;
+    margin-left: 4%;
+    margin-bottom: 4%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f1f1f1;
+    color: rgb(14, 12, 12);
+}
+
+.table td input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.cancelbuttonparasaorderpage,
+.updatebuttonparasaorderpage {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    display: inline-block;
+    width: auto;
+}
+
+.removebuttonsaorderpage {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    display: inline-block;
+    width: auto;
+}
+
+
+
+
+.dropdown-sortbuttonsaorder {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.dropdown-sortbuttonsaorder button {
+    font-size: 50px;
+}
+
+.checkbox-header,
+.checkbox-cell {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-cell input {
+    margin-right: 5px;
+}
+
+.mycontainer {
+    padding: 20px;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .searchbarorder input[type="text"] {
+        width: 100%; /* Adjust the width for medium screens */
+    }
+
+}

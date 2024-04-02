@@ -1,0 +1,37 @@
+.add-category-container {
+    background-color: #fafafa; /* Black background color */
+    color: #000000; /* Text color */
+    padding: 20px; /* Add padding as needed */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    margin: 5% auto; /* Center horizontally with 5% top margin */
+    margin-bottom: 0px;
+  }
+.category_name{
+    font-size: 20px;
+}
+
+
+.add-category-title {
+    text-align: center;
+    color: #050505;
+    font-size: 35px;
+}
+  
+  
+.add-category-button {
+    background-color: #0bb954;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 8px ;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .add-category-button:hover {
+    background-color: #0eeeee;
+  }
+  
