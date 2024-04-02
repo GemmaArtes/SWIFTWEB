@@ -7,13 +7,45 @@ import "../css/Reports.css";
 function Reports() {
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
+  const [images, setImages] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchData("orders", setRows);
+    fetchData("images", setImages);
+    fetchData("categories", setCategories);
   }, []);
+
+    const getImageName = (itemId) => {
+  // Find the image corresponding to the item ID
+  const image = images.find(image => image.id === itemId);
+
+  // If image found, return its name, otherwise return null or a placeholder
+  return image ? image.name : 'No Image';
+};
+
+  const getCategory = (itemId) => {
+    console.log("Item ID:", itemId);
+
+    // Find the image corresponding to the item ID
+    const image = images.find(image => image.id === itemId);
+
+    // If the image is found, find the corresponding category
+    // and return its name, otherwise return 'No Category'
+    return image ? getCategoryNameById(image.category_id) : 'No Category';
+  };
+
+    const getCategoryNameById = (categoryId) => {
+    // Find the category corresponding to the category ID
+    const category = categories.find(category => category.id === categoryId);
+
+    // If the category is found, return its name
+    // Otherwise, return 'No Category'
+    return category ? category.name : 'No Category';
+  };
 
   const handlePrint = () => {
     const printContents = document.getElementById('printableTable').innerHTML;
@@ -117,8 +149,8 @@ function Reports() {
                     <td>{dateFormatter(row.created_at)}</td>
                     <td>{row.or_number}</td>
                     <td>{row.username}</td>
-      <td>{row.category ? row.category.name : 'N/A'}</td> {/* Check if category exists */}
-      <td>{row.item ? row.item.name : 'N/A'}</td> {/* Check if item exists */}
+                    <td>{getCategory(row.item.id)}</td>
+                    <td>{getImageName(row.item.name)}</td>
                     <td>{row.type}</td>
                     <td>{row.quantity}</td>
                     <td>{row.payment_type}</td>

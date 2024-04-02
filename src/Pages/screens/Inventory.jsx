@@ -6,6 +6,7 @@ import '../css/Inventory.css';
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
+  const [images, setImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
@@ -18,6 +19,7 @@ const Inventory = () => {
 
   useEffect(() => {
     fetchData('inventorystock', setItems);
+    fetchData("images", setImages);
   }, []);
 
   function formatCreatedAt(createdAt) {
@@ -67,6 +69,14 @@ const Inventory = () => {
       setCurrentPage(currentPage -  1);
     }
   };
+
+  const getImageName = (itemId) => {
+  // Find the image corresponding to the item ID
+  const image = images.find(image => image.id === itemId);
+
+  // If image found, return its name, otherwise return null or a placeholder
+  return image ? image.name : 'No Image';
+};
 
   return (
     <div className="containersinventory">
@@ -122,7 +132,7 @@ const Inventory = () => {
           <tbody>
             {currentItems.map((item) => (
               <tr key={item.id}>
-              <td>{item.item.name}</td>
+              <td>{getImageName(item.item.name)}</td>
               <td>{item.quantity_on_hand}</td>
               <td>{item.is_in ===   1 ? formatCreatedAt(item.created_at) : ''}</td>
               <td>{item.is_in ===   1 ? item.quantity : ''}</td>

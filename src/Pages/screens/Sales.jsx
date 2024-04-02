@@ -4,6 +4,7 @@ import "../css/Sales.css";
 
 const Sales = () => {
   const [sales, setSales] = useState([]);
+  const [images, setImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedFilter, setSelectedFilter] = useState('day');
@@ -11,7 +12,16 @@ const Sales = () => {
 
   useEffect(() => {
     fetchData("sales", setSales);
+    fetchData("images", setImages);
   }, []);
+
+    const getImageName = (itemId) => {
+  // Find the image corresponding to the item ID
+  const image = images.find(image => image.id === itemId);
+
+  // If image found, return its name, otherwise return null or a placeholder
+  return image ? image.name : 'No Image';
+};
 
   function formatCreatedAt(createdAt) {
     const date = new Date(createdAt);
@@ -129,7 +139,7 @@ const Sales = () => {
             {paginatedSales.map((sale, index) => (
               <tr key={index}>
                 <td>{sale.date}</td>
-                <td>{sale.item.name}</td>
+                <td>{getImageName(sale.item.name)}</td>
                 <td>{sale.type}</td>
                 <td>{sale.quantity_on_hand}</td>
                 <td>{sale.quantity}</td>
