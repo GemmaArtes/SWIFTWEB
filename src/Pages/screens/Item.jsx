@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "../css/Item.css"; // Import the CSS file
-import { fetchData, createData, updateData, deleteData } from "../../Components/api/api2";
+import {
+  fetchData,
+  createData,
+  updateData,
+  deleteData,
+} from "../../Components/api/api2";
 
 function Item() {
   const [items, setItems] = useState([]);
   const [images, setImages] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [newItem, setNewItem] = useState({ 
+  const [newItem, setNewItem] = useState({
     name: "",
     price: "",
     author: "",
@@ -32,52 +37,50 @@ function Item() {
 
   // Filter items based on the search term
   //const filteredItems = items.filter((item) => {
-    //const searchTermLower = searchTerm.toLowerCase();
-    //return (
-      //item.name.toLowerCase().includes(searchTermLower)
-    //);
+  //const searchTermLower = searchTerm.toLowerCase();
+  //return (
+  //item.name.toLowerCase().includes(searchTermLower)
+  //);
   //});
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewItem((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
-  
+
     // Check if all required fields are filled
     if (!newItem.name || !newItem.price || !newItem.types) {
-      alert('Please fill in all required fields.');
+      alert("Please fill in all required fields.");
       return; // Prevent form submission if any required field is empty
     }
-  
+
     // Check for price to ensure it's greater than   0
-    if (isNaN(newItem.price) || newItem.price <=   0) {
-      alert('Price must be greater than 0 and also not a letter.');
+    if (isNaN(newItem.price) || newItem.price <= 0) {
+      alert("Price must be greater than 0 and also not a letter.");
       return; // Prevent form submission if price is not a number or is less than or equal to   0
     }
-  
+
     if (editingItem) {
       newItem.id = editingItem.id;
       // Update existing item
       await updateData(`items`, newItem);
-      alert('Item updated successfully!');
+      alert("Item updated successfully!");
     } else {
       // Add new item
       await createData("items", newItem);
-      alert('Item added successfully!');
+      alert("Item added successfully!");
     }
-  
+
     setShowModal(false);
     setEditingItem(null);
     fetchData("items", setItems);
   };
-  
 
   const handleEditItem = (item) => {
     setEditingItem(item);
@@ -95,7 +98,7 @@ function Item() {
   };
 
   const confirmRemove = async () => {
-    await deleteData("items/"+editingItem.id);
+    await deleteData("items/" + editingItem.id);
     fetchData("items", setItems);
     setConfirmationModal(false);
   };
@@ -144,20 +147,19 @@ function Item() {
               </span>
               <h2>{editingItem ? "Edit" : "Add"} Item</h2>
               <div className="add-item-form">
-
                 <select
                   name="name"
                   value={newItem.name}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
-                    Select Image
+                    Select Item
                   </option>
                   {images.map((images) => (
                     <option key={images.id} value={images.id}>
                       {images.name}
                     </option>
-                   ))}
+                  ))}
                 </select>
                 <input
                   type="text"
@@ -203,31 +205,50 @@ function Item() {
               <th>Action</th>
             </tr>
           </thead>
-<tbody>
- {items.map((item) => {
-    // Find the corresponding image name for the item
-    const imageName = images.find(image => image.id === item.name)?.name || 'N/A';
+          <tbody>
+            {items.map((item) => {
+              // Find the corresponding image name for the item
+              const imageName =
+                images.find((image) => image.id === item.name)?.name || "N/A";
 
-    return (
-      <tr key={item.id}>
-        <td>{imageName}</td> {/* Use the imageName instead of item.name */}
-        <td>{item.types}</td>
-        <td>{item.price}</td>
-        <td>{item.available_stocks}</td>
-        <td>
-          <a className="link" href={`#/dashboard/stocks/${item.id}`} style={{background: 'green', color: "white", font: "13px Arial", padding: "5px  10px", textDecoration: "none", borderRadius: "4px", display: "flex", justifyContent: "center"}} >
-            Manage Stocks
-          </a>
-          <button style={{background: 'darkblue'}} onClick={() => handleEditItem(item)}>
-            Edit
-          </button>
-          <button onClick={() => handleRemoveItem(item)}>Remove</button>
-        </td>
-      </tr>
-    );
- })}
-</tbody>
-
+              return (
+                <tr key={item.id}>
+                  <td>{imageName}</td>{" "}
+                  {/* Use the imageName instead of item.name */}
+                  <td>{item.types}</td>
+                  <td>{item.price}</td>
+                  <td>{item.available_stocks}</td>
+                  <td>
+                    <a
+                      className="link"
+                      href={`#/dashboard/stocks/${item.id}`}
+                      style={{
+                        background: "green",
+                        color: "white",
+                        font: "13px Arial",
+                        padding: "5px  10px",
+                        textDecoration: "none",
+                        borderRadius: "4px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      Manage Stocks
+                    </a>
+                    <button
+                      style={{ background: "darkblue" }}
+                      onClick={() => handleEditItem(item)}
+                    >
+                      Edit
+                    </button>
+                    <button onClick={() => handleRemoveItem(item)}>
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
@@ -235,4 +256,3 @@ function Item() {
 }
 
 export default Item;
-

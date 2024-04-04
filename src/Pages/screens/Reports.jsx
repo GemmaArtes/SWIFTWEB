@@ -19,36 +19,36 @@ function Reports() {
     fetchData("categories", setCategories);
   }, []);
 
-    const getImageName = (itemId) => {
-  // Find the image corresponding to the item ID
-  const image = images.find(image => image.id === itemId);
+  const getImageName = (itemId) => {
+    // Find the image corresponding to the item ID
+    const image = images.find((image) => image.id === itemId);
 
-  // If image found, return its name, otherwise return null or a placeholder
-  return image ? image.name : 'No Image';
-};
+    // If image found, return its name, otherwise return null or a placeholder
+    return image ? image.name : "No Image";
+  };
 
   const getCategory = (itemId) => {
     console.log("Item ID:", itemId);
 
     // Find the image corresponding to the item ID
-    const image = images.find(image => image.id === itemId);
+    const image = images.find((image) => image.id === itemId);
 
     // If the image is found, find the corresponding category
     // and return its name, otherwise return 'No Category'
-    return image ? getCategoryNameById(image.category_id) : 'No Category';
+    return image ? getCategoryNameById(image.category_id) : "No Category";
   };
 
-    const getCategoryNameById = (categoryId) => {
+  const getCategoryNameById = (categoryId) => {
     // Find the category corresponding to the category ID
-    const category = categories.find(category => category.id === categoryId);
+    const category = categories.find((category) => category.id === categoryId);
 
     // If the category is found, return its name
     // Otherwise, return 'No Category'
-    return category ? category.name : 'No Category';
+    return category ? category.name : "No Category";
   };
 
   const handlePrint = () => {
-    const printContents = document.getElementById('printableTable').innerHTML;
+    const printContents = document.getElementById("printableTable").innerHTML;
     const originalContents = document.body.innerHTML;
 
     document.body.innerHTML = printContents;
@@ -60,13 +60,15 @@ function Reports() {
   // Filter rows based on search term
   const filteredRows = rows.filter((row) => {
     const searchTermLower = searchTerm.toLowerCase();
-  
+
     // Convert created_at to a Date object
     const createdAtDate = new Date(row.created_at);
-  
+
     // Format the date for comparison: "Feb 07, 2024"
-    const formattedDate = `${createdAtDate.toLocaleString('default', { month: 'short' })} ${createdAtDate.getDate()}, ${createdAtDate.getFullYear()}`;
-  
+    const formattedDate = `${createdAtDate.toLocaleString("default", {
+      month: "short",
+    })} ${createdAtDate.getDate()}, ${createdAtDate.getFullYear()}`;
+
     return (
       formattedDate.toLowerCase().includes(searchTermLower) ||
       row.username.toLowerCase().includes(searchTermLower) ||
@@ -76,16 +78,36 @@ function Reports() {
       row.quantity.toString().includes(searchTermLower) ||
       row.payment_type.toLowerCase().includes(searchTermLower) ||
       (row.quantity * row.item.price).toString().includes(searchTermLower) ||
-      (row.status === 0 ? "Unpaid" : "Paid").toLowerCase().includes(searchTermLower) ||
-      (row.is_received === 0 ? "Not yet claimed" : "Delivered").toLowerCase().includes(searchTermLower)
+      (row.status === 0 ? "Unpaid" : "Paid")
+        .toLowerCase()
+        .includes(searchTermLower) ||
+      (row.is_received === 0 ? "Not yet claimed" : "Delivered")
+        .toLowerCase()
+        .includes(searchTermLower)
     );
   });
 
   const dateFormatter = (created_at) => {
     const createdAtDate = new Date(created_at);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
 
-    return `${months[createdAtDate.getMonth()]} ${createdAtDate.getDate().toString().padStart(2, '0')}, ${createdAtDate.getFullYear()}`;
+    return `${months[createdAtDate.getMonth()]} ${createdAtDate
+      .getDate()
+      .toString()
+      .padStart(2, "0")}, ${createdAtDate.getFullYear()}`;
   };
 
   // Pagination
@@ -118,7 +140,8 @@ function Reports() {
 
         <div className="table-container">
           <div className="table-toolbar">
-            <input className=" searchshit"
+            <input
+              className=" searchshit"
               type="text"
               placeholder="Search..."
               value={searchTerm}
@@ -156,7 +179,9 @@ function Reports() {
                     <td>{row.payment_type}</td>
                     <td>{row.quantity * row.item.price}</td>
                     <td>{row.status === 0 ? "Unpaid" : "Paid"}</td>
-                    <td>{row.is_received === 0 ? "Not yet claimed" : "Delivered"}</td>
+                    <td>
+                      {row.is_received === 0 ? "Not yet claimed" : "Delivered"}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -170,7 +195,7 @@ function Reports() {
             <button
               key={index + 1}
               onClick={() => handlePageChange(index + 1)}
-              className={currentPage === index + 1 ? 'active' : ''}
+              className={currentPage === index + 1 ? "active" : ""}
             >
               {index + 1}
             </button>
@@ -179,7 +204,9 @@ function Reports() {
         </div>
 
         <div className="print-buttoninreports no-print">
-          <a href="#" onClick={handlePrint}>Print</a>
+          <a href="#" onClick={handlePrint}>
+            Print
+          </a>
         </div>
       </div>
     </div>

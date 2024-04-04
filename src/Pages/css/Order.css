@@ -1,108 +1,104 @@
 .order-container {
-    padding: 20px;
+  padding: 20px;
 }
 
 .order-content {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: -50px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: -50px;
 }
 
 .order-title {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .table-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
 .searchbarorder {
-    margin-left: auto;
-
+  margin-left: auto;
 }
 
 .searchbarorder input[type="text"] {
-    padding: 8px;
-    width: 20%;
-    border: 1px solid #0a0a0a;
-    border-radius: 10px;
-    margin-left: 4%;
-    margin-bottom: 4%;
-    margin-left: 20%;
-    /* Add margin-right to provide space between Order and Search */
+  padding: 8px;
+  width: 20%;
+  border: 1px solid #0a0a0a;
+  border-radius: 10px;
+  margin-left: 4%;
+  margin-bottom: 4%;
+  margin-left: 20%;
+  /* Add margin-right to provide space between Order and Search */
 }
 
 .order-table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .order-table th,
 .order-table td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: center;
-    font-size: 17px;
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+  font-size: 17px;
 }
 
 .order-table th {
-    background-color: #b9bcbe;
-    color: rgb(7, 7, 7);
+  background-color: #b9bcbe;
+  color: rgb(7, 7, 7);
 }
 
 .order-table td input[type="checkbox"] {
-    margin-right: 2px;
+  margin-right: 2px;
 }
 
 .cancelbuttonparasaorderpage,
 .updatebuttonparasaorderpage {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 15px;
-    display: inline-block;
-    width: auto;
-    font-size: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  display: inline-block;
+  width: auto;
+  font-size: 12px;
 }
 
 .updatebuttonparasaorderpage2 {
-    background-color: #d67915;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 15px;
-    display: inline-block;
-    width: auto;
-    font-size: 12px;
+  background-color: #d67915;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  display: inline-block;
+  width: auto;
+  font-size: 12px;
 }
-
 
 /* .updatebuttonparasaorderpage2:hover {
     background-color: #b96b16;
 } */
 
 .removebuttonsaorderpage {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 15px;
-    display: inline-block;
-    width: auto;
-    font-size: 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  display: inline-block;
+  width: auto;
+  font-size: 12px;
 }
-
 
 /* .removebuttonsaorderpage {
     background-color: #dc3545;
@@ -118,40 +114,78 @@
 } */
 
 .dropdown-sortbuttonsaorder {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
 .dropdown-sortbuttonsaorder button {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 .checkbox-header,
 .checkbox-cell {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-cell input {
-    margin-right: 5px;
+  margin-right: 5px;
 }
-
 
 .order-table-wrapper {
-    overflow-x: auto;
-    overflow-y: auto;
-    max-height: 500px;
-    /* Add a horizontal scrollbar when content overflows */
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 500px;
+  /* Add a horizontal scrollbar when content overflows */
 }
 
-.order-count{
-    font-size: 15px;
+.order-count {
+  font-size: 15px;
 }
 
 .out-of-stock-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modal {
+  width: 100%;
+  height: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px;
+  height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content button {
+  padding: 10px;
+}
+
+.modal p {
+  font-size: 15px;
+}
+
+.modal label {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.close {
+  cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}

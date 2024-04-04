@@ -114,13 +114,15 @@ const ImageUploadForm = () => {
         </div>
       )}
       <div className="image-container"> {/* Use the new class here */}
-        <h2>All Images:</h2>
-        {images.map((img, index) => (
+        <h2>All Items</h2>
+        <div>
+                  {images.map((img, index) => (
           <div key={index}>
             <img src={`http://127.0.0.1:8000/images/${img.path}`} alt={img.name} className="uploaded-image" /> {/* Apply the class to the images */}
             <p>{img.name}</p>
           </div>
         ))}
+        </div>
       </div>
     </div>
   );

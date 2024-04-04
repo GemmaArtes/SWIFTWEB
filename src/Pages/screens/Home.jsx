@@ -5,6 +5,7 @@ import "../css/Home.css";
 function Home() {
   const [categories, setCategories] = useState([]);
   const [totalSoldMap, setTotalSoldMap] = useState(new Map());
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     // Fetch the list of categories from your API
@@ -24,7 +25,16 @@ function Home() {
 
       setTotalSoldMap(newTotalSoldMap);
     });
-  }, []); 
+  }, []);
+
+  useEffect(() => {
+    fetchData("images", setImages);
+  }, []);
+
+  const getImageName = (itemId) => {
+    const image = images.find((image) => image.id === itemId);
+    return image ? image.name : "No Image";
+  };
 
   return (
     <div className="home">
@@ -40,7 +50,7 @@ function Home() {
                 {categories.items &&
                   categories.items.map((item, index) => (
                     <tr key={index}>
-                      <td>{item.name}</td>
+                      <td>{getImageName(item.name)}</td>
                       <td>{item.types}</td>
                       <td>Available: {item.available_stocks}</td>
                     </tr>
@@ -53,22 +63,32 @@ function Home() {
             <h2 className="home-name">Orders</h2>
             <table className="hometable">
               <thead>
-                <tr>
-                </tr>
+                <tr></tr>
               </thead>
               <tbody>
-                {Array.from(totalSoldMap.entries()).map(([itemName, totalSold], index) => (
-                  <tr key={index}>
-                    <td>{itemName}</td>
-                    <td>{categories.items.find(item => item.name === itemName)?.types}</td>
-                    <td>Sold: {totalSold}</td>
-                  </tr>
-                ))}
+                {Array.from(totalSoldMap.entries()).map(
+                  ([itemName, totalSold], index) => (
+                    <tr key={index}>
+                      <td>{getImageName(itemName)}</td>
+                      <td>
+                        {
+                          categories.items.find(
+                            (item) => item.name === itemName
+                          )?.types
+                        }
+                      </td>
+                      <td>Sold: {totalSold}</td>
+                    </tr>
+                  )
+                )}
                 {/* Display the total quantity sold */}
                 <tr className="total-row">
                   <td colSpan="2">Total Sold:</td>
                   <td>
-                    {Array.from(totalSoldMap.values()).reduce((total, sold) => total + sold, 0)}
+                    {Array.from(totalSoldMap.values()).reduce(
+                      (total, sold) => total + sold,
+                      0
+                    )}
                   </td>
                 </tr>
               </tbody>

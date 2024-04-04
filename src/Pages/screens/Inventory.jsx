@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { fetchData, createData, updateData, deleteData } from '../../Components/api/api2';
-import '../css/Inventory.css';
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { fetchData } from "../../Components/api/api2";
+import "../css/Inventory.css";
 
 const Inventory = () => {
   const [items, setItems] = useState([]);
   const [images, setImages] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage =  10;
+  const itemsPerPage = 10;
 
   // State for tracking checkboxes
   const [showStocksIn, setShowStocksIn] = useState(true);
   const [showStocksOut, setShowStocksOut] = useState(true);
 
   useEffect(() => {
-    fetchData('inventorystock', setItems);
+    fetchData("inventorystock", setItems);
     fetchData("images", setImages);
   }, []);
 
   function formatCreatedAt(createdAt) {
     const date = new Date(createdAt);
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
     });
   }
 
@@ -38,14 +38,17 @@ const Inventory = () => {
     // Filter by search term
     //const nameMatches = item.item.name && item.item.name.toLowerCase().includes(searchTermLower);
     const dateMatches = date && date.toLowerCase().includes(searchTermLower);
-    const typeMatches = item.type && item.type.toLowerCase().includes(searchTermLower);
+    const typeMatches =
+      item.type && item.type.toLowerCase().includes(searchTermLower);
 
     // Filter by stocks in/out
-    const stocksInMatches = showStocksIn && item.is_in ===  1;
-    const stocksOutMatches = showStocksOut && item.is_in ===  0;
+    const stocksInMatches = showStocksIn && item.is_in === 1;
+    const stocksOutMatches = showStocksOut && item.is_in === 0;
 
     // Combine all conditions
-    return ( dateMatches || typeMatches) && (stocksInMatches || stocksOutMatches);
+    return (
+      (dateMatches || typeMatches) && (stocksInMatches || stocksOutMatches)
+    );
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -60,23 +63,20 @@ const Inventory = () => {
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage +  1);
+      setCurrentPage(currentPage + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (currentPage >  1) {
-      setCurrentPage(currentPage -  1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const getImageName = (itemId) => {
-  // Find the image corresponding to the item ID
-  const image = images.find(image => image.id === itemId);
-
-  // If image found, return its name, otherwise return null or a placeholder
-  return image ? image.name : 'No Image';
-};
+    const image = images.find((image) => image.id === itemId);
+    return image ? image.name : "No Image";
+  };
 
   return (
     <div className="containersinventory">
@@ -117,10 +117,11 @@ const Inventory = () => {
       </div>
       <div className="Inventory">
         <h2>Inventory Stock Card</h2>
-        <table className='Inventorytable'>
+        <table className="Inventorytable">
           <thead>
             <tr>
               <th>Item Name</th>
+              <th>Item Type</th>
               <th>Stocks On Hand</th>
               <th>Date Stocks In</th>
               <th>Stocks In</th>
@@ -132,33 +133,44 @@ const Inventory = () => {
           <tbody>
             {currentItems.map((item) => (
               <tr key={item.id}>
-              <td>{getImageName(item.item.name)}</td>
-              <td>{item.quantity_on_hand}</td>
-              <td>{item.is_in ===   1 ? formatCreatedAt(item.created_at) : ''}</td>
-              <td>{item.is_in ===   1 ? item.quantity : ''}</td>
-              <td className={item.is_in ===   0 ? 'red-text' : ''}>{item.is_in ===   0 ? formatCreatedAt(item.created_at) : ''}</td>
-              <td className={item.is_in ===   0 ? 'red-text' : ''}>{item.is_in ===   0 ? item.quantity : ''}</td>
-              <td>
-                {item.is_in ===   1
-                  ? item.quantity_on_hand + item.quantity
-                  : item.quantity_on_hand - item.quantity}
-              </td>
-            </tr>
+                <td>{getImageName(item.item.name)}</td>
+                <td>{item.item.types}</td>
+                <td>{item.quantity_on_hand}</td>
+                <td>
+                  {item.is_in === 1 ? formatCreatedAt(item.created_at) : ""}
+                </td>
+                <td>{item.is_in === 1 ? item.quantity : ""}</td>
+                <td className={item.is_in === 0 ? "red-text" : ""}>
+                  {item.is_in === 0 ? formatCreatedAt(item.created_at) : ""}
+                </td>
+                <td className={item.is_in === 0 ? "red-text" : ""}>
+                  {item.is_in === 0 ? item.quantity : ""}
+                </td>
+                <td>
+                  {item.is_in === 1
+                    ? item.quantity_on_hand + item.quantity
+                    : item.quantity_on_hand - item.quantity}
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
         <div className="pagination">
-          <button className='paginationbutton' onClick={handlePrevPage}>&lt;</button>
+          <button className="paginationbutton" onClick={handlePrevPage}>
+            &lt;
+          </button>
           {Array.from({ length: totalPages }, (_, index) => (
-            <button  
-              key={index +  1}
-              onClick={() => handlePageChange(index +  1)}
-              className={currentPage === index +  1 ? 'active' : ''}
+            <button
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+              className={currentPage === index + 1 ? "active" : ""}
             >
-              {index +  1}
+              {index + 1}
             </button>
           ))}
-          <button className='paginationbutton' onClick={handleNextPage}>&gt;</button>
+          <button className="paginationbutton" onClick={handleNextPage}>
+            &gt;
+          </button>
         </div>
       </div>
     </div>
