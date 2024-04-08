@@ -17,7 +17,6 @@ function Order() {
     fetchData("images", setImages);
     fetchData("items", setItems);
     fetchData("categories", setCategories);
-    // fetchOrdersData(setRows);
   }, []);
 
   const getImageName = (itemId) => {
@@ -155,34 +154,22 @@ function Order() {
     }
   };
 
+  // Filter rows based on search term
   const filteredRows = rows.filter((row) => {
     const searchTermLower = searchTerm.toLowerCase();
 
-    // Convert created_at to a Date object
-    const createdAtDate = new Date(row.created_at);
-
-    // Format the date for comparison: "Feb 07, 2024"
-    const formattedDate = `${createdAtDate.toLocaleString("default", {
-      month: "short",
-    })} ${createdAtDate.getDate()}, ${createdAtDate.getFullYear()}`;
-
     return (
-      formattedDate.toLowerCase().includes(searchTermLower) ||
-      row.username.toLowerCase().includes(searchTermLower) ||
-      (row.item &&
-        row.item.image.category.name.toLowerCase().includes(searchTermLower)) ||
-      (row.item &&
-        row.item.image.name.toLowerCase().includes(searchTermLower)) ||
-      row.type.toLowerCase().includes(searchTermLower) ||
-      row.quantity.toString().includes(searchTermLower) ||
-      row.payment_type.toLowerCase().includes(searchTermLower) ||
-      (row.quantity * row.item.price).toString().includes(searchTermLower) ||
-      (row.status === 0 ? "Unpaid" : "Paid")
-        .toLowerCase()
-        .includes(searchTermLower) ||
-      (row.is_received === 0 ? "Not yet claimed" : "Delivered")
-        .toLowerCase()
-        .includes(searchTermLower)
+      (row.id.toString().includes(searchTermLower) ||
+        row.created_at.toLowerCase().includes(searchTermLower) ||
+        row.username.toLowerCase().includes(searchTermLower) ||
+        row.item.image.category.name.toLowerCase().includes(searchTermLower) ||
+        row.item.image.name.toLowerCase().includes(searchTermLower) ||
+        row.type.toLowerCase().includes(searchTermLower) ||
+        row.payment_type.toLowerCase().includes(searchTermLower) ||
+        (row.status === 0 ? "Not Approved" : "Approved")
+          .toLowerCase()
+          .includes(searchTermLower)) &&
+      row.is_received !== 1
     );
   });
 
@@ -256,13 +243,13 @@ function Order() {
                     {filteredRows.map((row) => (
                       <tr key={row.id}>
                         {/* <td>
-                        <input
-                          type="checkbox"
-                          onChange={() => handleCheckboxChange(row.id)}
-                          checked={selectedRows.includes(row.id)}
-                        />
-                        {row.id}
-                      </td> */}
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckboxChange(row.id)}
+                        checked={selectedRows.includes(row.id)}
+                      />
+                      {row.id}
+                    </td> */}
                         <td>{dateFormatter(row.created_at)}</td>
                         <td>{row.username}</td>
                         <td>{getCategory(row.item.id)}</td>
@@ -301,8 +288,8 @@ function Order() {
                               : "Mark as not yet claimed"}
                           </button>
                           {/* <button className="updatebuttonparasaorderpage" onClick={() => handleUpdateClick(row.id)}>
-                          Update
-                        </button> */}
+                        Update
+                      </button> */}
                           <button
                             className="removebuttonsaorderpage"
                             onClick={() => handleOpenModal(row.id)}
@@ -325,7 +312,6 @@ function Order() {
           </div>
         </div>
       </div>
-
       {modalOpen && (
         <div className="modal">
           <div className="modal-content">
