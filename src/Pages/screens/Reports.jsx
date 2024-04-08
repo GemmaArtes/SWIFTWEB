@@ -8,6 +8,7 @@ function Reports() {
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
   const [images, setImages] = useState([]);
+  const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +17,7 @@ function Reports() {
   useEffect(() => {
     fetchData("orders", setRows);
     fetchData("images", setImages);
+    fetchData("items", setItems);
     fetchData("categories", setCategories);
   }, []);
 
@@ -28,14 +30,14 @@ function Reports() {
   };
 
   const getCategory = (itemId) => {
-    console.log("Item ID:", itemId);
-
-    // Find the image corresponding to the item ID
-    const image = images.find((image) => image.id === itemId);
-
-    // If the image is found, find the corresponding category
-    // and return its name, otherwise return 'No Category'
-    return image ? getCategoryNameById(image.category_id) : "No Category";
+    const item = items.find((item) => item.id === itemId);
+    if (item) {
+      const image = images.find((image) => image.id === item.name);
+      if (image) {
+        return getCategoryNameById(image.category_id);
+      }
+    }
+    return "No Category";
   };
 
   const getCategoryNameById = (categoryId) => {
@@ -57,7 +59,6 @@ function Reports() {
     window.location.reload();
   };
 
-  // Filter rows based on search term
   const filteredRows = rows.filter((row) => {
     const searchTermLower = searchTerm.toLowerCase();
 
@@ -72,8 +73,10 @@ function Reports() {
     return (
       formattedDate.toLowerCase().includes(searchTermLower) ||
       row.username.toLowerCase().includes(searchTermLower) ||
-      row.item.category.name.toLowerCase().includes(searchTermLower) ||
-      row.item.name.toLowerCase().includes(searchTermLower) ||
+      (row.item &&
+        row.item.image.category.name.toLowerCase().includes(searchTermLower)) ||
+      (row.item &&
+        row.item.image.name.toLowerCase().includes(searchTermLower)) ||
       row.type.toLowerCase().includes(searchTermLower) ||
       row.quantity.toString().includes(searchTermLower) ||
       row.payment_type.toLowerCase().includes(searchTermLower) ||

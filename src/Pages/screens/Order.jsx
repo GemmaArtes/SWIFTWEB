@@ -38,9 +38,14 @@ function Order() {
   };
 
   const getCategory = (itemId) => {
-    console.log("Item ID:", itemId);
-    const image = images.find((image) => image.id === itemId);
-    return image ? getCategoryNameById(image.category_id) : "No Category";
+    const item = items.find((item) => item.id === itemId);
+    if (item) {
+      const image = images.find((image) => image.id === item.name);
+      if (image) {
+        return getCategoryNameById(image.category_id);
+      }
+    }
+    return "No Category";
   };
 
   const getCategoryNameById = (categoryId) => {
@@ -150,19 +155,34 @@ function Order() {
     }
   };
 
-  // Filter rows based on search term
   const filteredRows = rows.filter((row) => {
     const searchTermLower = searchTerm.toLowerCase();
 
+    // Convert created_at to a Date object
+    const createdAtDate = new Date(row.created_at);
+
+    // Format the date for comparison: "Feb 07, 2024"
+    const formattedDate = `${createdAtDate.toLocaleString("default", {
+      month: "short",
+    })} ${createdAtDate.getDate()}, ${createdAtDate.getFullYear()}`;
+
     return (
-      (row.id.toString().includes(searchTermLower) ||
-        row.created_at.toLowerCase().includes(searchTermLower) ||
-        row.username.toLowerCase().includes(searchTermLower) ||
-        row.payment_type.toLowerCase().includes(searchTermLower) ||
-        (row.status === 0 ? "Not Approved" : "Approved")
-          .toLowerCase()
-          .includes(searchTermLower)) &&
-      row.is_received !== 1
+      formattedDate.toLowerCase().includes(searchTermLower) ||
+      row.username.toLowerCase().includes(searchTermLower) ||
+      (row.item &&
+        row.item.image.category.name.toLowerCase().includes(searchTermLower)) ||
+      (row.item &&
+        row.item.image.name.toLowerCase().includes(searchTermLower)) ||
+      row.type.toLowerCase().includes(searchTermLower) ||
+      row.quantity.toString().includes(searchTermLower) ||
+      row.payment_type.toLowerCase().includes(searchTermLower) ||
+      (row.quantity * row.item.price).toString().includes(searchTermLower) ||
+      (row.status === 0 ? "Unpaid" : "Paid")
+        .toLowerCase()
+        .includes(searchTermLower) ||
+      (row.is_received === 0 ? "Not yet claimed" : "Delivered")
+        .toLowerCase()
+        .includes(searchTermLower)
     );
   });
 

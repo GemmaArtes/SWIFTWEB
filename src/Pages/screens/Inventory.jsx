@@ -31,12 +31,18 @@ const Inventory = () => {
     });
   }
 
+  const getImageName = (itemId) => {
+    const image = images.find((image) => image.id === itemId);
+    return image ? image.name : "No Image";
+  };
+
   const filteredItems = items.filter((item) => {
     const searchTermLower = searchTerm.toLowerCase();
     const date = formatCreatedAt(item.created_at);
 
-    // Filter by search term
-    //const nameMatches = item.item.name && item.item.name.toLowerCase().includes(searchTermLower);
+    const itemNameMatches = getImageName(item.item.name)
+      .toLowerCase()
+      .includes(searchTermLower);
     const dateMatches = date && date.toLowerCase().includes(searchTermLower);
     const typeMatches =
       item.type && item.type.toLowerCase().includes(searchTermLower);
@@ -47,7 +53,8 @@ const Inventory = () => {
 
     // Combine all conditions
     return (
-      (dateMatches || typeMatches) && (stocksInMatches || stocksOutMatches)
+      (itemNameMatches || dateMatches || typeMatches) &&
+      (stocksInMatches || stocksOutMatches)
     );
   });
 
@@ -71,11 +78,6 @@ const Inventory = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
-  };
-
-  const getImageName = (itemId) => {
-    const image = images.find((image) => image.id === itemId);
-    return image ? image.name : "No Image";
   };
 
   return (

@@ -211,42 +211,48 @@ function Item() {
               const imageName =
                 images.find((image) => image.id === item.name)?.name || "N/A";
 
-              return (
-                <tr key={item.id}>
-                  <td>{imageName}</td>{" "}
-                  {/* Use the imageName instead of item.name */}
-                  <td>{item.types}</td>
-                  <td>{item.price}</td>
-                  <td>{item.available_stocks}</td>
-                  <td>
-                    <a
-                      className="link"
-                      href={`#/dashboard/stocks/${item.id}`}
-                      style={{
-                        background: "green",
-                        color: "white",
-                        font: "13px Arial",
-                        padding: "5px  10px",
-                        textDecoration: "none",
-                        borderRadius: "4px",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      Manage Stocks
-                    </a>
-                    <button
-                      style={{ background: "darkblue" }}
-                      onClick={() => handleEditItem(item)}
-                    >
-                      Edit
-                    </button>
-                    <button onClick={() => handleRemoveItem(item)}>
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              );
+              // Filter items based on the search term and imageName
+              if (
+                item.types.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                imageName.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return (
+                  <tr key={item.id}>
+                    <td>{imageName}</td>{" "}
+                    {/* Use the imageName instead of item.name */}
+                    <td>{item.types}</td>
+                    <td>{item.price}</td>
+                    <td>{item.available_stocks}</td>
+                    <td>
+                      <a
+                        className="link"
+                        href={`#/dashboard/stocks/${item.id}`}
+                        style={{
+                          background: "green",
+                          color: "white",
+                          font: "13px Arial",
+                          padding: "5px  10px",
+                          textDecoration: "none",
+                          borderRadius: "4px",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        Manage Stocks
+                      </a>
+                      <button
+                        style={{ background: "darkblue" }}
+                        onClick={() => handleEditItem(item)}
+                      >
+                        Edit
+                      </button>
+                      <button onClick={() => handleRemoveItem(item)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                );
+              }
             })}
           </tbody>
         </table>
