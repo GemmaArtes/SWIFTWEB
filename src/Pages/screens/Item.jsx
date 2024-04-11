@@ -53,35 +53,45 @@ function Item() {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
-
+   
     // Check if all required fields are filled
     if (!newItem.name || !newItem.price || !newItem.types) {
-      alert("Please fill in all required fields.");
-      return; // Prevent form submission if any required field is empty
+       alert("Please fill in all required fields.");
+       return; // Prevent form submission if any required field is empty
     }
-
-    // Check for price to ensure it's greater than   0
+   
+    // Check for price to ensure it's greater than 0
     if (isNaN(newItem.price) || newItem.price <= 0) {
-      alert("Price must be greater than 0 and also not a letter.");
-      return; // Prevent form submission if price is not a number or is less than or equal to   0
+       alert("Price must be greater than 0 and also not a letter.");
+       return; // Prevent form submission if price is not a number or is less than or equal to 0
     }
+   
+          // Check if there is already an item with the same type
+      const existingItemWithSameType = items.find(item => item.types.toLowerCase() === newItem.types.toLowerCase());
+      if (existingItemWithSameType) {
+          alert("An item with the same type already exists. Please choose a different type.");
+          return; // Prevent form submission if the new item's type matches an existing item
+      }
 
+   
     if (editingItem) {
-      newItem.id = editingItem.id;
-      // Update existing item
-      await updateData(`items`, newItem);
-      alert("Item updated successfully!");
+       newItem.id = editingItem.id;
+       // Update existing item
+       await updateData(`items`, newItem);
+       alert("Item updated successfully!");
     } else {
-      // Add new item
-      await createData("items", newItem);
-      alert("Item added successfully!");
+       // Add new item
+       await createData("items", newItem);
+       alert("Item added successfully!");
     }
-
+   
     setShowModal(false);
     setEditingItem(null);
     fetchData("items", setItems);
-  };
+   };
 
+   
+   
   const handleEditItem = (item) => {
     setEditingItem(item);
     setNewItem({

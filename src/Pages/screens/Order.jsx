@@ -87,6 +87,8 @@ function Order() {
     window.location.reload();
   };
 
+  
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -128,6 +130,7 @@ function Order() {
     } catch (error) {
       console.error("Error toggling status:", error);
     }
+    window.location.reload();
   };
 
   const handleToggleStatus2 = async (orderId) => {

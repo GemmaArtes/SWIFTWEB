@@ -16,26 +16,26 @@ import Stocks from './Pages/screens/Stocks';
 import ReferencePage from './Pages/screens/ReferencePage';
 import Inventory from './Pages/screens/Inventory';
 import Sales from './Pages/screens/Sales';
-import Preloader from './Components/preloader/preloader';
+// import Preloader from './Components/preloader/preloader';
 
 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
  
-  useEffect(() => {
-     // Simulate fetching data
-     setTimeout(() => {
-       setIsLoading(false);
-     }, 1000); // Remove this timeout and replace with your actual data fetching logic
-  }, []);
+  // useEffect(() => {
+  //    // Simulate fetching data
+  //    setTimeout(() => {
+  //      setIsLoading(false);
+  //    }, 1000); // Remove this timeout and replace with your actual data fetching logic
+  // }, []);
  
   return (
      <HashRouter>
        <div className="App">
-         {isLoading ? (
+         {/* {isLoading ? (
            <Preloader />
-         ) : (
+         ) : ( */}
            <Routes>
              <Route path="/" element={<Login />} />
              <Route path="/dashboard/*" element={<Dashboard />} />
@@ -47,7 +47,7 @@ function App() {
              <Route path="/inventory" element={<Inventory />} />
              <Route path="/sales" element={<Sales />} />
            </Routes>
-         )}
+         {/* )} */}
        </div>
      </HashRouter>
   );

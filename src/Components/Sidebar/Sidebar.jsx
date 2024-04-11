@@ -109,10 +109,10 @@ const handleLogout = (event) => {
   
     const filteredMenuItems = menuItem.filter(
       (e) =>
-        (profile.roles[0].slug === 'super-admin' &&
-          (e.name === 'List of Users' || e.name === 'Add staff acc')) ||
-        (e.name !== 'List of Users' && e.name !== 'Add staff acc')
-    );
+         profile.roles[0].slug === 'super-admin' ||
+         (e.name !== 'List of Users' && e.name !== 'Add account')
+     );
+     
   
     return (
       <div className="container">
