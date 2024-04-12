@@ -79,7 +79,7 @@ const ImageUploadForm = () => {
 
   return (
     <div>
-      <button className='imagesaa' onClick={() => setIsModalOpen(true)}>Add Item</button>
+      <button className='button-add-item' onClick={() => setIsModalOpen(true)}>Add Item</button>
   
       {isModalOpen && (
         <div className="upload-image-modal"> {/* Apply the class to the modal */}
@@ -113,16 +113,17 @@ const ImageUploadForm = () => {
           <img src={uploadedImageUrl} alt="Uploaded" className="uploaded-image" /> {/* Apply the class to the uploaded image */}
         </div>
       )}
+       <h2 className='title'>All Items</h2>
       <div className="image-container"> {/* Use the new class here */}
-        <h2>All Items</h2>
-        <div>
-                  {images.map((img, index) => (
-          <div key={index}>
+       
+        
+          {images.map((img, index) => (
+          <div className='image' key={index}>
             <img src={`http://127.0.0.1:8000/images/${img.path}`} alt={img.name} className="uploaded-image" /> {/* Apply the class to the images */}
             <p>{img.name}</p>
           </div>
         ))}
-        </div>
+      
       </div>
     </div>
   );
