@@ -181,7 +181,16 @@ function Reports() {
                     <td>{row.quantity}</td>
                     <td>{row.payment_type}</td>
                     <td>{row.quantity * row.item.price}</td>
-                    <td>{row.status === 0 ? "Unpaid" : "Paid"}</td>
+                    <td>
+                      {row.status === 0
+                        ? "Unpaid"
+                        : row.status === 1
+                        ? "Paid"
+                        : row.status === 2
+                        ? "Cancelled"
+                        : ""}
+                    </td>
+
                     <td>
                       {row.is_received === 0 ? "Not yet claimed" : "Delivered"}
                     </td>

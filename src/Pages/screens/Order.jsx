@@ -82,9 +82,15 @@ function Order() {
   };
 
   const handleCancelClick = async (orderId) => {
-    console.log(`Cancel order with id: ${orderId}`);
-    await deleteData(`orders/${orderId}`);
-    window.location.reload();
+    try {
+      console.log(`Cancel order with id: ${orderId}`);
+
+      await updateData("orders", { id: orderId, status: 2 });
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
   };
 
   const handleSearchChange = (e) => {
@@ -93,23 +99,19 @@ function Order() {
 
   const handleToggleStatus = async (orderId, payment_id, item_id) => {
     try {
-      // Get the order with the specified orderId
       const orderToUpdate = rows.find((row) => row.id === orderId);
       const { item, quantity } = orderToUpdate;
       const { available_stocks } = item;
 
-      // Check if there are enough stocks for the order
       if (available_stocks < quantity) {
         alert(
           "There are not enough stocks for this order. Please restock or cancel the order."
         );
-        return; // Exit the function if there are not enough stocks
+        return;
       }
 
-      // Assuming status is a boolean, toggle the status
       const updatedStatus = orderToUpdate.status === 0 ? 1 : 0;
 
-      // Update the status in the backend
       await updateData("orders", { id: orderId, status: updatedStatus });
       await updateData("payments", {
         id: payment_id,
@@ -117,7 +119,6 @@ function Order() {
         item_id,
       });
 
-      // Update the status in the local state (optimistic update)
       setRows((prevRows) =>
         prevRows.map((row) =>
           row.id === orderId ? { ...row, status: updatedStatus } : row
@@ -154,9 +155,10 @@ function Order() {
     }
   };
 
-  // Filter rows based on search term
   const filteredRows = rows.filter((row) => {
     const searchTermLower = searchTerm.toLowerCase();
+
+    const isNotCanceled = row.status !== 2;
 
     return (
       (row.id.toString().includes(searchTermLower) ||
@@ -169,7 +171,8 @@ function Order() {
         (row.status === 0 ? "Not Approved" : "Approved")
           .toLowerCase()
           .includes(searchTermLower)) &&
-      row.is_received !== 1
+      row.is_received !== 1 &&
+      isNotCanceled
     );
   });
 
