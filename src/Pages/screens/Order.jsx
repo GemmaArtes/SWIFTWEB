@@ -11,6 +11,7 @@ function Order() {
   const [modalOpen, setModalOpen] = useState(false); // State to control modal visibility
   const [selectedOrder, setSelectedOrder] = useState(null); // State to store selected order details
   const [or_number, setOrNumber] = useState("");
+  const [cancelConfirmationOpen, setCancelConfirmationOpen] = useState(false);
 
   useEffect(() => {
     fetchData("orders", setRows);
@@ -81,16 +82,27 @@ function Order() {
     }
   };
 
-  const handleCancelClick = async (orderId) => {
+  const handleCancelOrder = async () => {
     try {
-      console.log(`Cancel order with id: ${orderId}`);
+      console.log(`Cancelling order with id: ${selectedOrder.id}`);
 
-      await updateData("orders", { id: orderId, status: 2 });
+      await updateData("orders", { id: selectedOrder.id, status: 2 });
+      console.log(`Order with id ${selectedOrder.id} cancelled successfully.`);
 
       window.location.reload();
     } catch (error) {
-      console.error("Error updating status:", error);
+      console.error("Error cancelling order:", error);
     }
+  };
+
+  const handleCancelConfirmation = (orderId) => {
+    setSelectedOrder({ id: orderId });
+    setCancelConfirmationOpen(true);
+  };
+
+  const handleCloseCancelConfirmation = () => {
+    setSelectedOrder(null);
+    setCancelConfirmationOpen(false);
   };
 
   const handleSearchChange = (e) => {
@@ -301,7 +313,7 @@ function Order() {
                           </button>
                           <button
                             className="removebuttonsaorderpage"
-                            onClick={() => handleCancelClick(row.id)}
+                            onClick={() => handleCancelConfirmation(row.id)}
                           >
                             Cancel
                           </button>
@@ -374,6 +386,24 @@ function Order() {
                 </button>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {cancelConfirmationOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseCancelConfirmation}>
+              &times;
+            </span>
+            <div>
+              <h2>Cancel Order Confirmation</h2>
+              <p>Are you sure you want to cancel this order?</p>
+              <div>
+                <button onClick={handleCancelOrder}>Yes</button>
+                <button onClick={handleCloseCancelConfirmation}>No</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
